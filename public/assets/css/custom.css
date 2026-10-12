@@ -1,0 +1,1155 @@
+/*--------------------------------------------------------------
+# FutureEngineers.pk — Custom Styles
+#
+# This file intentionally does NOT touch main.css. It reuses the
+# existing Blogy template classes and layers brand-specific
+# overrides on top. Sections below are ordered:
+#   1. Brand tokens (CSS variables)
+#   2. Global theme remap (site-wide, via the template's own
+#      --accent-color / --heading-color variables)
+#   3. Global link, button and card consistency fixes
+#   4. Footer
+#   5. Header — Global Navigation
+#   6. Industry News & Trends page
+#   7. Homepage — hero intro band, section titles, cards
+#   8. Homepage — About/Mission and Newsletter CTA (dark sections)
+#   9. Page Title header — shared by every inner page
+#
+# No page structure or content is changed by anything in this
+# file — colors, borders, spacing and hover states only. Section
+# 7 adds a small amount of new markup (a hero intro band) inside
+# the existing hero section on index.html; every other section
+# is CSS-only against existing markup/classes.
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# 1. Brand tokens
+--------------------------------------------------------------*/
+:root {
+  --fe-primary: #F4C542;
+  --fe-primary-hover: color-mix(in srgb, #F4C542, black 10%);
+  --fe-dark: #111111;
+  --fe-white: #FFFFFF;
+  --fe-light: #F8F9FA;
+  --fe-border: #E9ECEF;
+  --fe-text-muted: #666666;
+
+  /* Aliases kept for the header styles below, which were written
+     against these names first — same values as --fe-primary. */
+  --fe-yellow: var(--fe-primary);
+  --fe-yellow-hover: var(--fe-primary-hover);
+}
+
+/*--------------------------------------------------------------
+# 2. Global theme remap
+#
+# The Blogy template drives nearly every button, link, icon and
+# heading color site-wide through these two CSS variables. Re-
+# pointing them here is what makes the FutureEngineers palette
+# apply consistently across every existing page, without editing
+# main.css or any page markup.
+--------------------------------------------------------------*/
+:root {
+  --accent-color: var(--fe-primary);
+  --heading-color: var(--fe-dark);
+}
+
+/*--------------------------------------------------------------
+# 3a. Links — dark by default, yellow on hover/active
+--------------------------------------------------------------*/
+a {
+  color: var(--fe-dark);
+}
+
+a:hover {
+  color: var(--fe-primary);
+}
+
+/*--------------------------------------------------------------
+# 3b. Text-on-yellow contrast fix
+#
+# main.css pairs --accent-color backgrounds with --contrast-color
+# text (white, for readability on the template's original orange).
+# On solid FutureEngineers yellow, dark text is required instead.
+# --contrast-color itself is intentionally left untouched (white)
+# because it is also used for text over dark photo overlays
+# elsewhere (e.g. blog hero cards), where white is still correct.
+--------------------------------------------------------------*/
+.navmenu a i:hover,
+.navmenu a:focus i:hover,
+.navmenu .active i,
+.navmenu .active:focus i,
+.scroll-top,
+.scroll-top:hover,
+.call-to-action-2 .cta-buttons .btn.btn-primary,
+.call-to-action-2 .cta-buttons .btn.btn-outline:hover,
+.call-to-action .cta-form .btn,
+.pagination-2 li a.active,
+.pagination-2 li a:hover,
+.pagination-3 li a.active,
+.pagination-3 li a:hover,
+.blog-details .hero-img .meta-overlay .meta-categories .category,
+.blog-details .article-content .meta-bottom .tags .tag:hover,
+.blog-details .article-content .meta-bottom .social-links a:hover,
+.blog-author .author-social-links a:hover,
+.blog-comment-form .btn-submit,
+.author-profile .author-card .social-links a:hover,
+.author-profile .author-content .content-body .expertise-areas .tags span:hover,
+.about .features-boxes .feature-box:hover .icon-box,
+.contact .form-wrapper button,
+.error-404 .search-box .search-btn,
+.error-404 .error-action .btn-primary {
+  color: var(--fe-dark);
+}
+
+/* =====================================================
+   JOB DETAILS PAGE
+===================================================== */
+
+.job-detail-header {
+  background: #fff;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+}
+
+.job-detail-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.job-detail-meta {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.job-detail-meta li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #666;
+}
+
+.job-detail-meta i {
+  color: #F4C542;
+}
+
+.job-detail-content {
+  margin-top: 30px;
+  background: #fff;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+}
+
+.job-detail-content h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.job-detail-content h3:first-child {
+  margin-top: 0;
+}
+
+.job-detail-content ul {
+  padding-left: 20px;
+}
+
+.job-detail-content li {
+  margin-bottom: 10px;
+}
+
+.job-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.job-skills span {
+  padding: 7px 14px;
+  background: #f5f5f5;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.job-apply-box {
+  margin-top: 35px;
+  padding: 25px;
+  background: #faf7ed;
+  border-radius: 10px;
+  border-left: 4px solid #F4C542;
+}
+
+.job-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job-summary-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.job-summary-list li:last-child {
+  border-bottom: none;
+}
+
+.job-summary-list i {
+  font-size: 20px;
+  color: #F4C542;
+  margin-top: 2px;
+}
+
+.job-summary-list div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.job-summary-list strong {
+  font-size: 14px;
+}
+
+.job-summary-list span {
+  font-size: 14px;
+  color: #666;
+}
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+
+  .job-detail-header,
+  .job-detail-content {
+    padding: 25px;
+  }
+
+  .job-detail-title {
+    font-size: 26px;
+  }
+
+  .job-detail-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+}
+
+.scroll-top i {
+  color: var(--fe-dark);
+}
+
+/*--------------------------------------------------------------
+# 3c. Buttons — Bootstrap .btn-primary used directly in markup
+# (e.g. CV template download buttons) with no other styling hook.
+--------------------------------------------------------------*/
+.btn-primary {
+  --bs-btn-bg: var(--fe-primary);
+  --bs-btn-border-color: var(--fe-primary);
+  --bs-btn-color: var(--fe-dark);
+  --bs-btn-hover-bg: var(--fe-primary-hover);
+  --bs-btn-hover-border-color: var(--fe-primary-hover);
+  --bs-btn-hover-color: var(--fe-dark);
+  --bs-btn-active-bg: var(--fe-primary-hover);
+  --bs-btn-active-border-color: var(--fe-primary-hover);
+  --bs-btn-active-color: var(--fe-dark);
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+/*--------------------------------------------------------------
+# 3d. Card consistency — Jobs, Scholarships and Courses listing
+# pages currently render their <article> cards with none of the
+# styling that the CV Templates page's ".featured-post" cards
+# already have (missing class hook in the existing markup: these
+# pages use ".category-postst" instead of ".category-section").
+# This mirrors the exact same image proportions, spacing and type
+# scale already established on cv-templates.html, so all four
+# listing pages look consistent. No HTML/layout changes.
+--------------------------------------------------------------*/
+.category-postst article {
+  margin-bottom: 40px;
+}
+
+.category-postst .post-img {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.category-postst .post-img img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.category-postst .post-category {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fe-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+}
+
+.category-postst .title {
+  font-size: 20px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+}
+
+.category-postst .title a {
+  color: var(--fe-dark);
+  transition: color 0.3s;
+}
+
+.category-postst .title a:hover {
+  color: var(--fe-primary);
+}
+
+.category-postst .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.category-postst .post-author {
+  color: var(--fe-dark);
+  font-weight: 500;
+  margin: 0;
+}
+
+.category-postst .post-date {
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  margin: 0;
+}
+
+.category-postst .post-date::before {
+  content: "-";
+  margin-right: 8px;
+}
+
+/*--------------------------------------------------------------
+# 4. Footer — dark background, white text, yellow accents
+#
+# .footer inherits --default-color-based text/border colors from
+# main.css, which are dark-on-dark once the background flips to
+# --fe-dark, so those specific sub-rules are restated here in
+# light values. Layout, structure and copy are untouched.
+--------------------------------------------------------------*/
+.footer {
+  background-color: var(--fe-dark);
+  color: var(--fe-white);
+}
+
+.footer .footer-top,
+.footer .copyright {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.footer .footer-about .logo span {
+  color: var(--fe-white);
+}
+
+.footer h4 {
+  color: var(--fe-white);
+}
+
+.footer .social-links a {
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.footer .social-links a:hover {
+  color: var(--fe-primary);
+  border-color: var(--fe-primary);
+}
+
+.footer .footer-links ul a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .footer-links ul a:hover {
+  color: var(--fe-primary);
+}
+
+.footer .copyright p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .credits {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/*--------------------------------------------------------------
+# 5. Header — Global Navigation
+# Base layout/behavior below is prior work; the header/nav-wrap
+# background and nav link colors above were revised to the dark
+# #111111 navbar called for in the brand brief.
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Header — base
+--------------------------------------------------------------*/
+.header {
+  /* Re-point the template's existing nav color variables at the
+     FutureEngineers palette. These variables are only consumed
+     by descendants of .header in main.css, so this is scoped
+     and safe — it will not change colors elsewhere on the site.
+     Desktop nav sits on a dark bar, so links are white by
+     default with gold on hover/active. The mobile dropdown panel
+     stays white/light for readability, per its own rules below. */
+  --nav-color: var(--fe-white);
+  --nav-hover-color: var(--fe-primary);
+  --nav-mobile-background-color: var(--fe-white);
+  --nav-dropdown-background-color: var(--fe-white);
+  --nav-dropdown-color: var(--fe-dark);
+  --nav-dropdown-hover-color: var(--fe-primary);
+
+  background-color: var(--fe-dark);
+  padding: 18px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Uses the existing .scrolled hook that main.js already applies
+   to <body> on scroll — no JS changes required. */
+body.scrolled .header {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.header .top-row {
+  padding-bottom: 16px;
+}
+
+/*--------------------------------------------------------------
+# Logo / Branding
+--------------------------------------------------------------*/
+.header .logo {
+  text-decoration: none;
+  gap: 2px;
+}
+
+.header .logo .sitename {
+  font-family: var(--nav-font);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--fe-white);
+  margin: 0;
+  line-height: 1;
+}
+
+.header .logo .sitename span {
+  color: var(--fe-yellow);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/*--------------------------------------------------------------
+# Header actions — Search + Join Community
+--------------------------------------------------------------*/
+.header .header-actions {
+  gap: 18px;
+}
+
+.header .search-toggle {
+  color: var(--fe-white);
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.header .search-toggle:hover,
+.header .search-toggle:focus {
+  color: var(--fe-primary);
+}
+
+.header .btn-join {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--fe-yellow);
+  color: var(--fe-dark);
+  font-family: var(--nav-font);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.header .btn-join:hover,
+.header .btn-join:focus {
+  background-color: var(--fe-yellow-hover);
+  color: var(--fe-dark);
+}
+
+/* Keep room for the template's fixed mobile-nav-toggle icon
+   (top:20px; right:5px in main.css) so it never overlaps the
+   search icon / Join Community button on smaller screens —
+   mirrors the same pattern main.css already uses for .social-links. */
+@media (max-width: 1200px) {
+  .header .header-actions {
+    padding-right: 42px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header .logo .sitename,
+  .header .logo .sitename span {
+    font-size: 20px;
+  }
+
+  .header .btn-join {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .header .header-actions {
+    gap: 12px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Nav bar strip (below the logo row)
+--------------------------------------------------------------*/
+.header .nav-wrap {
+  background-color: var(--fe-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 0;
+}
+
+/* Desktop: replace color-shift hover/active with a clean
+   underline accent instead — avoids pill/rounded treatment and
+   reads as a more editorial / engineering-platform nav. */
+@media (min-width: 1200px) {
+  .navmenu a {
+    position: relative;
+  }
+
+  .navmenu a::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 10px;
+    height: 2px;
+    background-color: var(--fe-yellow);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.25s ease;
+  }
+
+  .navmenu li:last-child a::after {
+    right: 0;
+  }
+
+  .navmenu li:hover > a::after,
+  .navmenu .active::after,
+  .navmenu .active:focus::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Mobile: left-border accent instead of an underline, plus a
+   soft tint so the active/hovered item is easy to identify. */
+@media (max-width: 1199px) {
+  .navmenu a,
+  .navmenu a:focus {
+    border-left: 3px solid transparent;
+  }
+
+  .navmenu a:hover,
+  .navmenu .active,
+  .navmenu .active:focus {
+    border-left-color: var(--fe-yellow);
+    background-color: color-mix(in srgb, var(--fe-yellow), white 90%);
+  }
+
+  .mobile-nav-toggle {
+    background-color: var(--fe-light);
+    color: var(--fe-dark);
+  }
+
+  .mobile-nav-toggle:hover {
+    background-color: var(--fe-yellow);
+    color: var(--fe-dark);
+  }
+}
+
+/*--------------------------------------------------------------
+# 6. Industry News & Trends page
+# Scope: everything below is scoped to .industry-news-page so it
+# cannot affect any other page's buttons, cards or colors.
+--------------------------------------------------------------*/
+
+/* Primary buttons on this page are covered by the global
+   .btn-primary rule in section 3c above. */
+
+/* Category label chips (featured article + cards) */
+.industry-news-page .post-category {
+  display: inline-block;
+  background-color: var(--fe-yellow);
+  color: var(--fe-dark);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.industry-news-page .post-date {
+  font-size: 13px;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+}
+
+.industry-news-page .featured-post .title a,
+.industry-news-page .featured-post .title {
+  color: var(--fe-dark);
+}
+
+/* Category filter buttons */
+.industry-news-page .category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.industry-news-page .category-filters .filter-btn {
+  background-color: var(--fe-white);
+  color: var(--fe-dark);
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-family: var(--nav-font);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.industry-news-page .category-filters .filter-btn:hover {
+  border-color: var(--fe-yellow);
+  background-color: color-mix(in srgb, var(--fe-yellow), white 85%);
+}
+
+.industry-news-page .category-filters .filter-btn.active {
+  background-color: var(--fe-yellow);
+  border-color: var(--fe-yellow);
+  font-weight: 600;
+}
+
+/* Featured lead article: slightly larger title than the grid cards */
+.industry-news-page .featured-lead .title {
+  font-size: 26px;
+}
+
+.industry-news-page .featured-lead .excerpt {
+  font-size: 16px;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .industry-news-page .featured-lead .title {
+    font-size: 20px;
+  }
+}
+
+/* Grid cards: bordered surface with consistent image bleed */
+.industry-news-page .news-card {
+  background-color: var(--fe-white);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 8px;
+  padding: 16px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.industry-news-page .news-card:hover {
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.08);
+  transform: translateY(-2px);
+}
+
+.industry-news-page .news-card .post-img {
+  margin: -16px -16px 16px -16px;
+  border-radius: 8px 8px 0 0;
+}
+
+.industry-news-page .news-card .excerpt {
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  font-size: 14.5px;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+/* Newsletter CTA on this page: match the section spacing used
+   elsewhere but keep the button yellow via the .btn-primary rule above */
+.industry-news-page .newsletter-form .form-control:focus {
+  border-color: var(--fe-yellow);
+  box-shadow: none;
+}
+
+/*--------------------------------------------------------------
+# 7. Homepage — hero intro band, section titles, cards
+--------------------------------------------------------------*/
+
+/* Hero intro band: dark rounded card introducing the brand at
+   the top of the existing blog-grid hero, matching the rounded-
+   card language already used elsewhere on the site (blog items,
+   About/Mission section). New markup, existing section/container. */
+.hero-intro-band {
+  background-color: var(--fe-dark);
+  padding: 46px 40px 40px;
+  margin-bottom: 24px;
+  border-radius: 15px;
+}
+
+.hero-intro-band .hero-intro-eyebrow {
+  color: var(--fe-white);
+  font-family: var(--nav-font);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  margin: 0 0 12px;
+}
+
+.hero-intro-band .hero-intro-eyebrow span {
+  color: var(--fe-primary);
+}
+
+.hero-intro-band .hero-intro-title {
+  color: var(--fe-white);
+  font-family: var(--heading-font);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 14px;
+  max-width: 760px;
+}
+
+.hero-intro-band .hero-intro-title .dot {
+  color: var(--fe-primary);
+}
+
+.hero-intro-band .hero-intro-sub {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 0 24px;
+}
+
+.hero-intro-band .hero-intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hero-intro-band .btn-outline-light {
+  --bs-btn-color: var(--fe-white);
+  --bs-btn-border-color: rgba(255, 255, 255, 0.5);
+  --bs-btn-hover-bg: var(--fe-white);
+  --bs-btn-hover-border-color: var(--fe-white);
+  --bs-btn-hover-color: var(--fe-dark);
+  --bs-btn-active-bg: var(--fe-white);
+  --bs-btn-active-border-color: var(--fe-white);
+  --bs-btn-active-color: var(--fe-dark);
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .hero-intro-band {
+    padding: 30px 22px 26px;
+    border-radius: 10px;
+  }
+
+  .hero-intro-band .hero-intro-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Section overline labels ("Stay Informed With Our" etc.) —
+   small gold brand marker above every section heading, site-wide. */
+.section-title h2 {
+  color: var(--fe-primary);
+  font-weight: 700;
+}
+
+.section-title h2::after {
+  background: var(--fe-primary);
+}
+
+/* Explore by Category is set one notch off pure white so the
+   page reads DARK -> WHITE -> LIGHT -> DARK -> WHITE -> DARK. */
+.category-section {
+  background-color: var(--fe-light);
+}
+
+/* Card polish: white surface, subtle border, gold-accented lift
+   on hover. Scoped to the grid-based card patterns already used
+   on the homepage (not the horizontal list-post rows, which have
+   no room for padding/border without a layout change). */
+.category-section .featured-post,
+.latest-posts article {
+  background-color: var(--fe-white);
+  border: 1px solid var(--fe-border);
+  border-radius: 10px;
+  padding: 16px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.category-section .featured-post {
+  margin-bottom: 24px;
+}
+
+.category-section .featured-post .post-img,
+.latest-posts .post-img {
+  margin: -16px -16px 16px -16px;
+}
+
+.latest-posts article {
+  box-shadow: none;
+}
+
+.category-section .featured-post:hover,
+.latest-posts article:hover {
+  border-color: var(--fe-primary);
+  box-shadow: 0 10px 26px rgba(17, 17, 17, 0.09);
+  transform: translateY(-3px);
+}
+
+/*--------------------------------------------------------------
+# 8. Homepage — About/Mission and Newsletter CTA (dark sections)
+--------------------------------------------------------------*/
+
+/* About/Mission ("call-to-action-2"): premium dark editorial
+   treatment for the site's featured content block. */
+.call-to-action-2 {
+  background-color: var(--fe-dark);
+  color: var(--fe-white);
+}
+
+.call-to-action-2 h2 {
+  color: var(--fe-white);
+}
+
+.call-to-action-2 p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Feature pills keep their white/surface chip background, so
+   their own text needs to stay dark even though the section
+   text color around them is now white. */
+.call-to-action-2 .features .feature-item span {
+  color: var(--fe-dark);
+}
+
+/* Floating stats card is a light chip too — same fix. */
+.call-to-action-2 .content-right .floating-card .card-content .stats-text {
+  color: var(--fe-text-muted);
+  opacity: 1;
+}
+
+.call-to-action-2 .decoration .circle-1,
+.call-to-action-2 .decoration .circle-2 {
+  background-color: rgba(244, 197, 66, 0.08);
+}
+
+/* Newsletter ("call-to-action"): dark branded CTA per brief. */
+.call-to-action .container {
+  background-color: var(--fe-dark);
+  color: var(--fe-white);
+}
+
+.call-to-action .cta-content h2 {
+  color: var(--fe-white);
+}
+
+.call-to-action .cta-content p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.call-to-action .cta-form .form-control {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--fe-white);
+}
+
+.call-to-action .cta-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.call-to-action .cta-form .form-control:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--fe-primary);
+}
+
+/*--------------------------------------------------------------
+# 9. Page Title header — shared by every inner page
+#
+# .page-title is the shared breadcrumb + H1 block that sits
+# directly under the header on every page except the homepage
+# (jobs-internships, scholarships, courses-certifications,
+# cv-templates, about, contact, industry-news). Branding this one
+# shared block gives every inner page a consistent dark header
+# without touching each page individually.
+--------------------------------------------------------------*/
+.page-title {
+  background-color: var(--fe-dark);
+  padding: 50px 0 46px;
+}
+
+.page-title .breadcrumbs .breadcrumb-item {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.page-title .breadcrumbs .breadcrumb-item.active {
+  color: var(--fe-primary);
+}
+
+.page-title .breadcrumbs .breadcrumb-item a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.page-title .breadcrumbs .breadcrumb-item a:hover {
+  color: var(--fe-primary);
+}
+
+.page-title .breadcrumbs .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.page-title .title-wrapper h1 {
+  color: var(--fe-white);
+}
+
+.page-title .title-wrapper p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/*--------------------------------------------------------------
+# 10. Jobs & Internships page
+# Scope: everything below is scoped to .jobs-page so it cannot
+# affect any other page's buttons, cards or colors.
+--------------------------------------------------------------*/
+
+/* Filter buttons (All Opportunities / Jobs / Internships) —
+   same visual language as the Industry News category filters. */
+.jobs-page .category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.jobs-page .category-filters .filter-btn {
+  background-color: var(--fe-white);
+  color: var(--fe-dark);
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: 4px;
+  padding: 8px 20px;
+  font-family: var(--nav-font);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.jobs-page .category-filters .filter-btn:hover {
+  border-color: var(--fe-yellow);
+  background-color: color-mix(in srgb, var(--fe-yellow), white 85%);
+}
+
+.jobs-page .category-filters .filter-btn.active {
+  background-color: var(--fe-yellow);
+  border-color: var(--fe-yellow);
+  font-weight: 600;
+}
+
+.jobs-page .filter-note {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--fe-text-muted);
+  font-style: italic;
+}
+
+/* Opportunity cards — one consistent structure so a future
+   Laravel loop can generate the same markup per listing. */
+.jobs-page .opportunity-card {
+  background-color: var(--fe-white);
+  border: 1px solid var(--fe-border);
+  border-radius: 10px;
+  padding: 22px;
+  height: 100%;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.jobs-page .opportunity-card:hover {
+  border-color: var(--fe-yellow);
+  box-shadow: 0 10px 26px rgba(17, 17, 17, 0.09);
+  transform: translateY(-3px);
+}
+
+.jobs-page .opportunity-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.jobs-page .opportunity-badge {
+  display: inline-block;
+  background-color: var(--fe-yellow);
+  color: var(--fe-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.jobs-page .opportunity-badge.badge-internship {
+  background-color: var(--fe-dark);
+  color: var(--fe-yellow);
+}
+
+.jobs-page .opportunity-type {
+  font-size: 13px;
+  color: var(--fe-text-muted);
+  font-weight: 500;
+}
+
+.jobs-page .opportunity-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.jobs-page .opportunity-title a {
+  color: var(--fe-dark);
+  transition: color 0.2s ease;
+}
+
+.jobs-page .opportunity-title a:hover {
+  color: var(--fe-primary-hover);
+}
+
+.jobs-page .opportunity-company {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--fe-text-muted);
+  margin-bottom: 12px;
+}
+
+.jobs-page .opportunity-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+.jobs-page .opportunity-meta li {
+  font-size: 13.5px;
+  color: var(--fe-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jobs-page .opportunity-meta i {
+  color: var(--fe-primary);
+}
+
+.jobs-page .opportunity-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  margin-bottom: 18px;
+}
+
+.jobs-page .opportunity-btn {
+  --bs-btn-color: var(--fe-dark);
+  --bs-btn-border-color: var(--fe-dark);
+  --bs-btn-hover-bg: var(--fe-dark);
+  --bs-btn-hover-border-color: var(--fe-dark);
+  --bs-btn-hover-color: var(--fe-white);
+  font-weight: 600;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.jobs-page .jobs-empty-state {
+  color: var(--fe-text-muted);
+  margin-top: 10px;
+}
+
+/* Sidebar: align the widgets container with the listings column
+   instead of the template's default 60px top offset. */
+.jobs-page .jobs-sidebar.widgets-container {
+  margin: 0;
+}
+
+/* "Join FutureEngineers.pk" CTA widget: dark branded surface,
+   reusing .widget-item/.widget-title from the base template. */
+.jobs-page .cta-widget {
+  background-color: var(--fe-dark);
+  border-color: var(--fe-dark);
+}
+
+.jobs-page .cta-widget .widget-title {
+  color: var(--fe-white);
+  border-left-color: var(--fe-yellow);
+}
+
+.jobs-page .cta-widget p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.jobs-page .cta-widget .btn {
+  --bs-btn-bg: var(--fe-yellow);
+  --bs-btn-border-color: var(--fe-yellow);
+  --bs-btn-color: var(--fe-dark);
+  --bs-btn-hover-bg: var(--fe-yellow-hover);
+  --bs-btn-hover-border-color: var(--fe-yellow-hover);
+  --bs-btn-hover-color: var(--fe-dark);
+  width: 100%;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+@media (max-width: 991px) {
+  .jobs-page .jobs-sidebar.widgets-container {
+    margin-top: 10px;
+  }
+}
